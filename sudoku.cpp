@@ -58,7 +58,6 @@ class Sudoku {
                 for(int j=0; j<3; j++){
                 /*cout<< sudokuboard[i][j]<<"\n";*/
                     if(sudokuboard[i][j]==value){
-                        cout<<"false";
                         return false;
                     }
                 }
@@ -143,10 +142,7 @@ class Sudoku {
             }
             
         }
-
         return true;
-       
-
     }
 
     bool checkWin(){
@@ -160,13 +156,25 @@ class Sudoku {
         return true;
     }
 
+   
+    bool valueIsValid(int row, int column, int value){
+        if(!checkRow(row, value) || !checkColumn(column, value) || !checkBox(row, column, value)){
+            cout<<"value is not valid at the position";
+            return false;
+        }
+        cout<<"value is valid at the position";
+        return true;
+    }
+
+
+
     
 };
 
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.checkWin();
+    sudokuboard.valueIsValid(1,2,6);
     return 0;
 
 }
