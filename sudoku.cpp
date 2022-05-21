@@ -34,7 +34,6 @@ class Sudoku {
     }
 
     bool checkRow(int row, int value){
-        
         for(int i=0; i<9;i++){
             if(sudokuboard[row][i]==value){
                 return false;
@@ -42,10 +41,111 @@ class Sudoku {
         }
         return true;
     }
-    void checkColumn(){
-
+    bool checkColumn(int column, int value){
+        for(int i=0; i<9;i++){
+            if(sudokuboard[i][column]==value){
+                return false;
+            }
+            /*cout<< sudokuboard[i][column]<<"\n";*/
+        }
+        return true;
     }
-    void checkBox(){
+
+    bool checkBox(int row, int column, int value){
+
+        if(row/3==0 && column/3==0){//value is at the first box
+            for(int i=0; i<3; i++){
+                for(int j=0; j<3; j++){
+                /*cout<< sudokuboard[i][j]<<"\n";*/
+                    if(sudokuboard[i][j]==value){
+                        cout<<"false";
+                        return false;
+                    }
+                }
+            }
+        }
+        if(row/3==1 && column/3==0){//value is at the second
+            for(int i=3; i<6; i++){
+                for(int j=0; j<3; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+        }
+        if(row/3==2 && column/3==0){
+            for(int i=6; i<9; i++){
+                for(int j=0; j<3; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+        if(row/3==0 && column/3==1){
+            for(int i=0; i<3; i++){
+                for(int j=3; j<6; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+        if(row/3==1 && column/3==1){
+            for(int i=3; i<6; i++){
+                for(int j=3; j<6; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+        if(row/3==2 && column/3==1){
+            for(int i=6; i<9; i++){
+                for(int j=3; j<6; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+        if(row/3==0 && column/3==2){
+            for(int i=0; i<3; i++){
+                for(int j=6; j<9; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+        if(row/3==1 && column/3==2){
+            for(int i=3; i<6; i++){
+                for(int j=6; j<9; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+        if(row/3==2 && column/3==2){
+            for(int i=6; i<9; i++){
+                for(int j=6; j<9; j++){
+                    if(sudokuboard[i][j]==value){
+                            return false;
+                    }
+                }
+            }
+            
+        }
+
+        return true;
+       
 
     }
 };
@@ -53,7 +153,7 @@ class Sudoku {
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.checkRow(0,6);
+    sudokuboard.checkBox(0,0,1);
     return 0;
 
 }
