@@ -162,8 +162,19 @@ class Sudoku {
             cout<<"value is not valid at the position";
             return false;
         }
-        cout<<"value is valid at the position";
+        cout<<"value is valid at the position"<<"\n";
         return true;
+    }
+
+    void changeSquare(int row, int column, int value){
+        if(valueIsValid(row,column,value)){
+            sudokuboard[row][column]=value;
+            showGame();
+        }
+        else{
+            cout<<"value not valid"<<"\n";
+        }
+
     }
 
 
@@ -174,7 +185,7 @@ class Sudoku {
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.valueIsValid(1,2,6);
+    sudokuboard.changeSquare(0,0,3);
     return 0;
 
 }
