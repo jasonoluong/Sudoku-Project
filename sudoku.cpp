@@ -1,12 +1,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
+
 using namespace std;
 
 class Sudoku {
     public:
     //variables
-    //2by2 matrix
+    //2by2 matrix 
+   
     int sudokuboard[9][9] = {
                             {0, 0, 6, 5, 0, 8, 4, 0, 0},
                             {5, 2, 0, 0, 0, 1, 0, 0, 0},
@@ -18,8 +21,49 @@ class Sudoku {
                             {0, 0, 0, 0, 0, 0, 0, 7, 4},
                             {0, 0, 5, 2, 0, 6, 3, 0, 0}
                             };
-   
     
+    //create a hash map to let us know which values we can change
+    map<map<int,int>,bool> initialplacement;
+    void createInitialplacement(){
+        for(int i=0; i<9;i++){
+            for(int j=0; j<9;j++){
+                if(sudokuboard[i][j]!=0){
+                    initialplacement.insert({{i,j}, true});
+                }
+                else{
+                    initialplacement.insert({{i,j}, false});
+                }
+            }
+        }
+        
+    }
+    /*
+    map<map<int,int>,bool> :: iterator row;
+    map<int, int>::iterator it2;
+    void showInitialplacement(){
+        for(row=initialplacement.begin();row !=initialplacement.end();++row){
+            cout<< row->second<< ' ';
+            map<int, int>column = row->first;
+            for (it2 = column.begin(); it2 != column.end(); ++it2){
+                cout << it2->first << ":" << it2->second;
+            }
+        }
+    }
+    */
+    void showInitialplacement(){
+        for (map<map<int, int>,bool>::iterator it = initialplacement.begin(); it != initialplacement.end(); ++it){
+        cout << it->second << " : ";
+        map<int, int> internal_map = it->first;
+        for (map<int, int>::iterator it2 = internal_map.begin(); it2 != internal_map.end(); ++it2){
+            if (it2 != internal_map.begin())
+                cout << ",";
+            cout << it2->first << ":" << it2->second;
+        }
+        cout << endl;
+        }
+    }
+
+
 
     //prints the gameboard
     void showGame(){
@@ -177,7 +221,8 @@ class Sudoku {
 
     }
 
-    void solve(){
+
+    void solve(){//we need to backtrack when values were not valid
         for(int i=0;i<9;i++){
             for(int j=0;j<9;j++){
                 for(int k=1; k<10;k++){
@@ -195,7 +240,9 @@ class Sudoku {
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.solve();
+    sudokuboard.createInitialplacement();
+    sudokuboard.showInitialplacement();
+    //sudokuboard.solve();
     return 0;
 
 }
