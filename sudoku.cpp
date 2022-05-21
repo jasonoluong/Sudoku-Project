@@ -148,12 +148,25 @@ class Sudoku {
        
 
     }
+
+    bool checkWin(){
+        for(int i=0; i<9; i++){
+            for(int j=1;j<10;j++)
+               if(!checkRow(i,j) || !checkColumn(i,j) || !checkBox(i,0,j)){
+                   cout<<"not win";
+                   return false;
+               }
+        }
+        return true;
+    }
+
+    
 };
 
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.checkBox(0,0,1);
+    sudokuboard.checkWin();
     return 0;
 
 }
