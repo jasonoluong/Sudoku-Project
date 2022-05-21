@@ -177,15 +177,25 @@ class Sudoku {
 
     }
 
+    void solve(){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                for(int k=1; k<10;k++){
+                    changeSquare(i, j, k);
+                }
+            }
+        cout<<"\n";    
+        showGame();
+        }
+        
 
-
-    
+    }
 };
 
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.changeSquare(0,0,3);
+    sudokuboard.solve();
     return 0;
 
 }
