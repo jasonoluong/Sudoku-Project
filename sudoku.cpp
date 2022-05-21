@@ -21,23 +21,39 @@ class Sudoku {
    
     
 
-
-    void showgame(){
+    //prints the gameboard
+    void showGame(){
         for(int i=0; i<9;i++){
             for(int j=0; j<9;j++){
+
                 cout<<sudokuboard[i][j]<< " ";
             }   
             cout << "\n";
         }
      
     }
-    
-    
+
+    bool checkRow(int row, int value){
+        
+        for(int i=0; i<9;i++){
+            if(sudokuboard[row][i]==value){
+                return false;
+            }
+        }
+        return true;
+    }
+    void checkColumn(){
+
+    }
+    void checkBox(){
+
+    }
 };
 
 
 int main(){
     Sudoku sudokuboard;
-    sudokuboard.showgame();
+    sudokuboard.checkRow(0,6);
     return 0;
+
 }
