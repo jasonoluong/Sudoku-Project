@@ -23,7 +23,9 @@ class Sudoku {
                             };
     
     //create a hash map to let us know which values we can change
+    /*
     map<map<int,int>,bool> initialplacement;
+    
     void createInitialplacement(){
         for(int i=0; i<9;i++){
             for(int j=0; j<9;j++){
@@ -37,6 +39,30 @@ class Sudoku {
         }
         
     }
+    */
+    map<string,bool> initialplacement;
+    void createInitialplacement(){
+        for(int i=0; i<9;i++){
+            for(int j=0; j<9;j++){
+                if(sudokuboard[i][j]!=0){
+                    initialplacement.insert({to_string(i)+","+to_string(j), true});
+                }
+                else{
+                    initialplacement.insert({to_string(i)+","+to_string(j), false});
+                }
+            }
+        }
+        
+    }
+   
+    void showInitialplacement(){
+        for(auto const &ent1 : initialplacement) {
+            cout << ent1.first << " " << ent1.second << endl;
+        }
+    
+    }
+    
+
     /*
     map<map<int,int>,bool> :: iterator row;
     map<int, int>::iterator it2;
@@ -50,10 +76,11 @@ class Sudoku {
         }
     }
     */
+   /*
     void showInitialplacement(){
         for (map<map<int, int>,bool>::iterator it = initialplacement.begin(); it != initialplacement.end(); ++it){
         cout << it->second << " : ";
-        map<int, int> internal_map = it->first;
+        map<int, int>&internal_map = it->first;
         for (map<int, int>::iterator it2 = internal_map.begin(); it2 != internal_map.end(); ++it2){
             if (it2 != internal_map.begin())
                 cout << ",";
@@ -62,6 +89,19 @@ class Sudoku {
         cout << endl;
         }
     }
+    */
+   /*
+    void showInitialplacement(){
+        for(auto const &ent1 : initialplacement) {
+             cout<<ent1.second <<" "; 
+            for(auto const &ent2 : ent1.first) {
+                cout<<ent2.first<<" "; 
+            }
+        }
+    }
+    */
+    
+   
 
 
 
